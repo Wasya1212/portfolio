@@ -1,0 +1,19 @@
+extends layout/default
+
+block vars
+  -
+    page = {
+      language: 'ua',
+      name: 'about',
+      title: 'About us',
+      appTitle: 'About us',
+      description: 'Main corporation description page'
+    }
+block beforeload
+  link(rel="stylesheet", href="about.css")
+  
+//- block afterload
+//-   script(src="js/about.js")
+  
+block content
+  h1 about world

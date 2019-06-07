@@ -1,0 +1,20 @@
+// varialbes
+block vars
+
+<!DOCTYPE html>
+html(lang= page.language)
+  head
+    title= page.title
+    block head
+      include ../partials/head
+    block beforeload
+  body(class="page-" + page.name)
+    include ../libs/bemto/index
+    include ../mixins/index
+    block header
+      include ../partials/header
+    block content
+    block footer
+      include ../partials/footer
+    script(src="../js/index.js")
+    block afterload

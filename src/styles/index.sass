@@ -1,0 +1,81 @@
+@import "./normalize.sass"
+@import "./variables.sass"
+@import "./media.sass"
+@import "./fonts.sass"
+
+@import "./partials/header"
+@import "./components/navbar"
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+@keyframes draw
+  0%
+    // font-family: "MyCoolFont"
+    color: red
+  100%
+    // font-family: "MyCoolFont3"
+    color: white
+
++keyframes(size)
+  0%
+    font-family: "MyCoolFont"
+  50%
+    font-family: "MyCoolFont2"
+  100%
+    font-family: "MyCoolFont3"
+
+*
+  box-sizing: border-box
+
+body
+  margin: 0
+  padding: 0
+  max-width: 100vw
+  width: 100%
+  height: auto
+  background-color: #fff
+  // overflow-x: hidden
+a
+  display: inline-block
+  color: inherit
+  outline: none
+  text-decoration: none
+
+pre
+  white-space: pre-line
+
+svg
+  width: 100%
+  height: 100%
+
+.bottom-navigation
+  padding: 2rem 1rem
+  background-color: #f2f1f1
+
+.clearfix
+  zoom: 1
+
+.clearfix:before, .clearfix:after
+  content: ""
+  display: table
+
+.clearfix:after
+  clear: both
+
+.button
+  font-family: "MyCoolFont"
+  animation: .35s ease-in-out size
+  animation-iteration-count: infinite
+  animation-direction: alternate-reverse
+  animation-play-state: paused
+
+.button:hover
+  animation-play-state: running
