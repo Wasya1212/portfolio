@@ -1,0 +1,21 @@
+@import "./animation"
+
++keyframes(size)
+  0%
+    font-family: "MyCoolFont"
+  50%
+    font-family: "MyCoolFont2"
+  100%
+    font-family: "MyCoolFont3"
+
+@mixin animated-text($delay, $state: paused)
+  font-family: "MyCoolFont"
+  animation: $delay ease-in-out size
+  animation-iteration-count: infinite
+  animation-direction: alternate-reverse
+  @if $state == paused
+    animation-play-state: paused
+    &:hover
+      animation-play-state: running
+  @else
+    animation-play-state: $state

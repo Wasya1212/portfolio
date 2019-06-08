@@ -4,33 +4,7 @@
 @import "./fonts.sass"
 
 @import "./partials/header"
-@import "./components/navbar"
-
-=keyframes($name)
-  @-webkit-keyframes #{$name}
-    @content
-  @-moz-keyframes #{$name}
-    @content
-  @-ms-keyframes #{$name}
-    @content
-  @keyframes #{$name}
-    @content
-
-@keyframes draw
-  0%
-    // font-family: "MyCoolFont"
-    color: red
-  100%
-    // font-family: "MyCoolFont3"
-    color: white
-
-+keyframes(size)
-  0%
-    font-family: "MyCoolFont"
-  50%
-    font-family: "MyCoolFont2"
-  100%
-    font-family: "MyCoolFont3"
+@import "./partials/footer"
 
 *
   box-sizing: border-box
@@ -69,13 +43,3 @@ svg
 
 .clearfix:after
   clear: both
-
-.button
-  font-family: "MyCoolFont"
-  animation: .35s ease-in-out size
-  animation-iteration-count: infinite
-  animation-direction: alternate-reverse
-  animation-play-state: paused
-
-.button:hover
-  animation-play-state: running

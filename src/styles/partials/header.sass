@@ -1,3 +1,5 @@
+@import "../components/navbar"
+
 .header
   display: -webkit-flex
   display: -ms-flex
@@ -5,3 +7,17 @@
   align-items: center
   justify-content: space-between
   padding: 1rem
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  z-index: 100
+  .social
+    a:nth-child(even)
+      margin: 0 1rem
+    &__icon
+      font-size: 30px
+      color: #2a2a2a
+      transition: all .25s ease-in-out
+      &:hover
+        transform: scale(1.3)

@@ -12,8 +12,7 @@ module.exports = {
   entry: Object.assign(webpackData.entryScripts, { styles: webpackData.entryStyles }),
   output: {
     path: webpackData.distDir,
-    filename: 'js/[name].js',
-    publicPath: '/'
+    filename: 'js/[name].js'
   },
   module: {
     rules: [

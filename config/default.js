@@ -8,7 +8,7 @@ const Page = require('./libs/page');
 // path to scriptsPath/[script names] | (script name)
 
 let indexPage = new Page("frontpage");
-indexPage.addScripts([ "index" ]);
+indexPage.addScripts([ "index", "frontpage" ]);
 indexPage.addStyles([ "frontpage" ]);
 
 let aboutPage = new Page("about");

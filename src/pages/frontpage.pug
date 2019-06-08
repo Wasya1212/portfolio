@@ -12,10 +12,22 @@ block vars
 block beforeload
   link(rel="stylesheet", href="frontpage.css")
   
-//- block afterload
-//-   script(src="js/about.js")
+block afterload
+  script(src="js/frontpage.js")
   
 block content
-  h1 Аа Бб Вв Гг Ґґ Ее Єє Ии Іі Її Жж Зз Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Чч Шш Щщ Ьь Юю Яя
-  h1 1 2 3 4 5 6 7 8 9 0
-  h1= `! @ # $ % ^ & ( ) - _ = + \ / | ' " © €`
+  +b.SECTION.intro
+    +e.DIV.animated-block
+    +e.DIV.animated-block-2
+    +e.DIV.instruction
+      strong Там далі ще є :)
+    +e.DIV.title 
+      h2 Мій сайтєц
+      .description
+        p Тут можна 
+        p знайти інформацію
+        p про мене 
+        p та мої роботи.
+    //- h1 Аа Бб Вв Гг Ґґ Ее Єє Ии Іі Її Жж Зз Йй Кк Лл Мм Нн Оо Пп Рр Сс Тт Уу Фф Хх Чч Шш Щщ Ьь Юю Яя
+    //- h1 1 2 3 4 5 6 7 8 9 0
+    //- h1= `! @ # $ % ^ & ( ) - _ = + \ / | ' " © €`
