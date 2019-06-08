@@ -13,6 +13,38 @@
   to
     transform: rotate(360deg)
 
++keyframes(moveBird)
+  0%
+    transform: translateX(-50vw)
+  100%
+    transform: translateX(150vw)
+
++keyframes(bird1)
+  0%
+    opacity: 1
+  25%
+    opacity: 1
+  50%
+    opacity: 0
+  100%
+    opacity: 0
+
++keyframes(bird2)
+  0%, 100%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0
+
++keyframes(bird3)
+  0%, 100%
+    opacity: 0
+  75%
+    opacity: 1
+  100%
+    opacity: 1
+
 .intro
   position: relative
   width: 100%
@@ -21,6 +53,7 @@
   background-size: 100% auto
   background-repeat: no-repeat
   background-position: bottom
+  overflow: hidden
   >*
     position: relative
     z-index: 10
@@ -90,3 +123,35 @@
     animation-iteration-count: infinite
     animation-direction: normal
     transform-origin: 50.3% 64.2% 0
+  &__animated-block-3
+    position: absolute
+    left: 0
+    bottom: 65vh
+    width: 250px
+    height: 100px
+    animation: 30s linear moveBird
+    animation-iteration-count: infinite
+    animation-direction: normal
+    .frames-container
+      position: relative
+      width: 100%
+      height: 100%
+      >*
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        background-repeat: no-repeat
+        background-size: contain
+        background-position: top left
+        animation-direction: alternate-reverse
+      .frame-1
+        background-image: url("../../assets/images/bird1.png")
+        animation: bird1 .35s infinite linear
+      .frame-2
+        background-image: url("../../assets/images/bird2.png")
+        animation: bird2 .35s infinite linear
+      .frame-3
+        background-image: url("../../assets/images/bird3.png")
+        animation: bird3 .35s infinite linear
