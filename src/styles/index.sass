@@ -6,6 +6,48 @@
 @import "./partials/header"
 @import "./partials/footer"
 
+@import "./mixins/animation"
+
++keyframes(frame1)
+  0%, 100%
+    opacity: 1
+  0%
+    opacity: 1
+  29%
+    opacity: 1
+  30%
+    opacity: 0
+  100%
+    opacity: 0
+
++keyframes(frame2)
+  0%, 100%
+    opacity: 0
+  0%
+    opacity: 0
+  29%
+    opacity: 0
+  30%
+    opacity: 1
+  59%
+    opacity: 1
+  60%
+    opacity: 0
+  100%
+    opacity: 0
+
++keyframes(frame3)
+  0%, 100%
+    opacity: 0
+  0%
+    opacity: 0
+  58%
+    opacity: 0
+  59%
+    opacity: 1
+  100%
+    opacity: 1
+
 *
   box-sizing: border-box
 
@@ -43,3 +85,76 @@ svg
 
 .clearfix:after
   clear: both
+
+.line
+  position: relative
+  width: 100%
+  height: 10px
+  margin: .5rem 0
+  &>*
+    position: absolute
+    left: 0
+    top: 0
+    content: ''
+    display: inline-block
+    width: 100%
+    height: 100%
+    background-repeat: repeat-x
+    background-size: auto 300%
+    animation-direction: normal
+    animation-duration: .35s
+    animation-iteration-count: infinite
+    animation-timing-function: ease-in-out
+    background-image: url('../../assets/images/linesprite.png')
+  .frame-1
+    animation-name: frame1
+    background-position: top left
+  .frame-2
+    animation-name: frame2
+    background-position: top center
+  .frame-3
+    animation-name: frame3
+    background-position: bottom left
+
+.border, .border-fill
+  position: absolute
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  &>*
+    position: absolute
+    left: 0
+    top: 0
+    content: ''
+    display: inline-block
+    width: 100%
+    height: 100%
+    background-repeat: repeat-x
+    background-size: 100% 100%
+    animation-direction: normal
+    animation-duration: 5s
+    animation-iteration-count: infinite
+    animation-timing-function: ease-in-out
+
+.border
+  .frame-1
+    animation-name: frame1
+    background-image: url('../../assets/images/border1.png')
+  .frame-2
+    animation-name: frame2
+    background-image: url('../../assets/images/border2.png')
+  .frame-3
+    animation-name: frame3
+    background-image: url('../../assets/images/border3.png')
+
+.border-fill
+  .frame-1
+    animation-name: frame1
+    background-image: url('../../assets/images/border4.png')
+  .frame-2
+    animation-name: frame2
+    background-image: url('../../assets/images/border5.png')
+  .frame-3
+    animation-name: frame3
+    background-image: url('../../assets/images/border6.png')

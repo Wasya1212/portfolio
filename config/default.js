@@ -12,8 +12,12 @@ indexPage.addScripts([ "index", "frontpage" ]);
 indexPage.addStyles([ "frontpage" ]);
 
 let aboutPage = new Page("about");
-aboutPage.addScripts([ "index" ]);
+// aboutPage.addScripts([ "index" ]);
 // aboutPage.addStyles([ "index" ]);
+
+let projectsPage = new Page("projects");
+projectsPage.addScripts([ "projects" ]);
+projectsPage.addStyles([ "projects" ]);
 
 module.exports = {
   distDir: path.resolve(__dirname, '../dist'),
@@ -24,6 +28,7 @@ module.exports = {
   assetsDir: path.resolve(__dirname, '../src/assets'),
   pages: [
     indexPage,
-    aboutPage
+    aboutPage,
+    projectsPage
   ].map(page => page.data())
 }

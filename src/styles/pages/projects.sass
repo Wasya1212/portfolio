@@ -1,0 +1,72 @@
+@import "../index.sass"
+@import "../mixins/hover-text.sass"
+
+.projects
+  position: relative
+  margin-top: 60px
+  &__control
+    &__item
+      position: relative
+      display: inline-block
+      padding: 1rem 1.5rem
+      font-family: "MyCoolFont"
+      font-size: 35px
+      text-align: center
+      vertical-align: middle
+      cursor: pointer
+      color: black
+      &:hover
+        color: white
+
+.project
+  position: relative
+  &__image
+    position: relative
+    max-width: 600px
+    max-height: 400px
+    width: 600px
+    height: auto
+    margin-left: 5rem
+    img
+      width: 100%
+      height: 100%
+      max-width: 100%
+      max-height: 100%
+      object-fit: contain
+      object-position: center
+  .clip
+    position: absolute
+    z-index: 1
+    background-repeat: no-repeat
+    background-size: auto 100%
+    &::after
+      position: relative
+      content: ''
+      display: inline-block
+      width: 114px
+      height: 227px
+      background-image: url('../../assets/images/dotsprite.png')
+    &[clipid="1"]
+      left: 1rem
+      top: 1rem
+      &::after
+        transform: rotate(-235deg) translate(-54%, 64%) scale(0.4)
+        background-position: (114px * 0) 0
+    &[clipid="2"]
+      right: 1rem
+      top: 1rem
+      &::after
+        transform: rotate(-150deg) translate(12%, 68%) scale(0.4)
+        background-position: (114px * 1) 0
+    &[clipid="3"]
+      left: 1rem
+      bottom: 1rem
+      &::after
+        transform: rotate(-285deg) translate(83%, 52%) scale(0.4)
+        background-position: (114px * 2) 0
+    &[clipid="4"]
+      right: 1rem
+      bottom: 1rem
+      &::after
+        transform: rotate(-107deg) translate(-100%, 27%) scale(0.4)
+        background-position: (114px * 3) 0

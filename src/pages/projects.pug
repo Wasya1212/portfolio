@@ -1,0 +1,70 @@
+extends layout/default
+
+block vars
+  -
+    page = {
+      language: 'ua',
+      name: 'Projects',
+      title: 'Projects',
+      appTitle: 'Projects',
+      description: 'All my projects list'
+    }
+    
+    projects = [
+      {
+        category: 'нода',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-10 135210.png',
+        link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'верстка',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-10 135210.png',
+        link: 'https://mikino.herokuapp.com/'
+      }
+    ]
+
+block beforeload
+  link(rel="stylesheet", href="projects.css")
+  
+block afterload
+  script(src="js/projects.js")
+
+block content
+  +b.SECTION.projects
+    +e.ARTICLE.control
+      each project in projects
+        +e.DIV.control__item
+          .border
+            .frame-1
+            .frame-2
+            .frame-3
+          .border-fill
+            .frame-1
+            .frame-2
+            .frame-3
+          | #{project.category}
+    +e.ARTICLE.list
+      each project in projects
+        +b.DIV.project
+          +e.H4.title= project.title
+          +e.P.description= project.description
+          .line
+            .frame-1
+            .frame-2
+            .frame-3
+          +e.A.image(href=project.link, target="_blank")
+            img(src="../assets/images/" + project.img, alt=project.title)
+            .clip(clipid="1")
+            .clip(clipid="2")
+            .clip(clipid="3")
+            .clip(clipid="4")
+          .line
+            .frame-1
+            .frame-2
+            .frame-3
+            
+    
