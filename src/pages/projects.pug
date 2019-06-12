@@ -59,6 +59,7 @@ block content
             span #{project.category}
           -
             usedCategories.push(project.category)
+      span.instruction Туто фільтр
     +e.ARTICLE.list
       each project in projects
         +b.DIV.project
@@ -69,8 +70,9 @@ block content
             .frame-2
             .frame-3
           +e.A.image(href=project.link, target="_blank")
-            //- img(src="../assets/images/" + project.img, alt=project.title)
-            include ../assets/images/draw.svg
+            img(src="../assets/images/" + project.img, alt=project.title)
+            if (project.img == "Annotation 2019-06-10 135210.png")
+              include ../assets/images/draw.svg
             .clip(clipid="1")
             .clip(clipid="2")
             .clip(clipid="3")

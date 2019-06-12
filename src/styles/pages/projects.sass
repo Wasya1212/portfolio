@@ -1,6 +1,71 @@
 @import "../index.sass"
 @import "../mixins/hover-text.sass"
 @import "../mixins/draw-svg.sass"
+@import "../mixins/animation.sass"
+
++keyframes(showFromLeftTop)
+  from
+    left: -100vw
+    top: -100vh
+  to
+    left: 1rem
+    top: 1rem
+
++keyframes(showFromRightTop)
+  from
+    right: -100vw
+    top: -100vh
+  to
+    right: 1rem
+    top: 1rem
+
++keyframes(showFromLeftBottom)
+  from
+    left: -100vw
+    bottom: -100vh
+  to
+    left: 1rem
+    bottom: 1rem
+
++keyframes(showFromRightBottom)
+  from
+    right: -100vw
+    bottom: -100vh
+  to
+    right: 1rem
+    bottom: 1rem
+
++keyframes(showFromLeft)
+  from
+    left: -100vw
+  to
+    left: 1rem
+
++keyframes(showFromRight)
+  from
+    right: -100vw
+  to
+    right: 1rem
+
++keyframes(arrow1)
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 1
+  51%
+    opacity: 0
+  100%
+    opacity: 0
+
++keyframes(arrow2)
+  0%, 100%
+    opacity: 0
+  50%
+    opacity: 0
+  51%
+    opacity: 1
+  100%
+    opacity: 1
 
 .projects
   position: relative
@@ -32,6 +97,52 @@
     flex-direction: column
     flex-wrap: wrap
     padding-left: 3rem
+    .instruction
+      @include animated-text(.35s, running)
+      position: absolute
+      left: calc(50% + 6rem)
+      bottom: -150px
+      font-family: 'MyCoolFont'
+      font-size: 25px
+      white-space: nowrap
+      letter-spacing: 1px
+      transform: translateX(-50%)
+    &::after
+      content: ''
+      display: inline-block
+      position: absolute
+      bottom: -2rem
+      left: calc(50% + 3rem)
+      width: 50px
+      height: 100px
+      background-image: url('../../assets/images/arrow1.png')
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center
+      transform: translateY(100%)
+      opacity: 1
+      animation-name: arrow1
+      animation-duration: .25s
+      animation-timing-function: linear
+      animation-iteration-count: infinite
+    &::before
+      content: ''
+      display: inline-block
+      position: absolute
+      bottom: -2rem
+      left: calc(50% + 3rem)
+      width: 50px
+      height: 100px
+      background-image: url('../../assets/images/arrow2.png')
+      background-repeat: no-repeat
+      background-size: contain
+      background-position: center
+      transform: translateY(100%)
+      opacity: 0
+      animation-name: arrow2
+      animation-duration: .25s
+      animation-timing-function: linear
+      animation-iteration-count: infinite
     &__item
       @include animated-text(.35s)
       font-family: "MyCoolFont"
@@ -60,6 +171,12 @@
         display: block
         &:hover
           color: white
+
+.project
+  &.animated
+    svg
+      @include animated-svg(#000)
+      opacity: 1
 
 .project
   position: relative
@@ -91,15 +208,28 @@
     position: relative
     height: auto
     width: 100%
+    &:hover
+      img
+        opacity: 1
+      svg
+        opacity: 0
+      .clip
+        display: block
     img
+      position: absolute
+      left: 0
+      top: 0
       width: 100%
       height: 100%
       max-width: 100%
       max-height: 100%
       object-fit: contain
       object-position: center
+      opacity: 0
+      transition: opacity 1s ease-in-out
     svg
-      @include animated-svg(#000)
+      opacity: 0
+      transition: opacity 1s ease-in-out
   &:nth-child(odd)
     .clip[clipid="1"]::after
       transform: rotate(-235deg) translate(-54%, 64%) scale(0.4)
@@ -126,11 +256,24 @@
     .clip[clipid="4"]::after
       transform: rotate(-70deg) translate(-75%, 60%) scale(0.4)
       background-position: (114px * 2) 0
+  &:last-child
+    .clip
+      &[clipid="3"]
+        left: 1rem
+        bottom: 1rem
+        animation-name: showFromLeft
+      &[clipid="4"]
+        right: 1rem
+        bottom: 1rem
+        animation-name: showFromRight
   .clip
     position: absolute
     z-index: 1
     background-repeat: no-repeat
     background-size: auto 100%
+    animation-timing-function: ease-in-out
+    animation-duration: .5s
+    display: none
     &::after
       position: relative
       content: ''
@@ -141,12 +284,16 @@
     &[clipid="1"]
       left: 1rem
       top: 1rem
+      animation-name: showFromLeftTop
     &[clipid="2"]
       right: 1rem
       top: 1rem
+      animation-name: showFromRightTop
     &[clipid="3"]
       left: 1rem
       bottom: 1rem
+      animation-name: showFromLeftBottom
     &[clipid="4"]
       right: 1rem
       bottom: 1rem
+      animation-name: showFromRightBottom
