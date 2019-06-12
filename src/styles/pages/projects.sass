@@ -1,32 +1,96 @@
 @import "../index.sass"
 @import "../mixins/hover-text.sass"
+@import "../mixins/draw-svg.sass"
 
 .projects
   position: relative
   margin-top: 60px
+  &__list
+    margin-left: calc(250px + 3rem)
+    display: -webkit-flex
+    display: -ms-flex
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    align-items: center
+    .project
+      display: inline-block
+      width: 85%
+      padding: 0 7.5%
   &__control
+    position: fixed
+    left: 0
+    top: 50%
+    transform: translateY(-50%)
+    z-index: 99
+    max-width: 300px
+    min-width: 250px
+    display: -webkit-flex
+    display: -ms-flex
+    display: flex
+    align-items: center
+    flex-direction: column
+    flex-wrap: wrap
+    padding-left: 3rem
     &__item
+      @include animated-text(.35s)
+      font-family: "MyCoolFont"
       position: relative
       display: inline-block
-      padding: 1rem 1.5rem
-      font-family: "MyCoolFont"
-      font-size: 35px
       text-align: center
       vertical-align: middle
-      cursor: pointer
-      color: black
+      &:nth-child(even)
+        margin: 1rem 0
+      .border
+        display: inline-block
+      .border-fill
+        display: none
       &:hover
-        color: white
+        .border
+          display: none
+        .border-fill
+          display: inline-block
+      span
+        padding: 1rem 1.5rem
+        box-sizing: border-box
+        position: relative
+        font-size: 35px
+        cursor: pointer
+        color: black
+        display: block
+        &:hover
+          color: white
 
 .project
   position: relative
+  &__title
+    text-align: center
+    font-family: 'MyCoolFont3'
+    font-size: 35px
+    color: black
+    text-transform: uppercase
+    letter-spacing: 4px
+    margin-bottom: 1rem
+    cursor: default
+  &__description
+    text-align: center
+    font-family: 'MyCoolFont3'
+    font-size: 25px
+    color: black
+    letter-spacing: 3px
+    cursor: default
+    &::before
+      content: '<<'
+      margin-right: 1ch
+      display: inline
+    &::after
+      content: '>>'
+      margin-left: 1ch
+      display: inline
   &__image
     position: relative
-    max-width: 600px
-    max-height: 400px
-    width: 600px
     height: auto
-    margin-left: 5rem
+    width: 100%
     img
       width: 100%
       height: 100%
@@ -34,6 +98,34 @@
       max-height: 100%
       object-fit: contain
       object-position: center
+    svg
+      @include animated-svg(#000)
+  &:nth-child(odd)
+    .clip[clipid="1"]::after
+      transform: rotate(-235deg) translate(-54%, 64%) scale(0.4)
+      background-position: (114px * 0) 0
+    .clip[clipid="2"]::after
+      transform: rotate(-150deg) translate(12%, 68%) scale(0.4)
+      background-position: (114px * 1) 0
+    .clip[clipid="3"]::after
+      transform: rotate(-285deg) translate(83%, 52%) scale(0.4)
+      background-position: (114px * 2) 0
+    .clip[clipid="4"]::after
+      transform: rotate(-107deg) translate(-100%, 27%) scale(0.4)
+      background-position: (114px * 3) 0
+  &:nth-child(even)
+    .clip[clipid="1"]::after
+      transform: rotate(-197deg) translate(17%, 71%) scale(0.4)
+      background-position: (114px * 3) 0
+    .clip[clipid="2"]::after
+      transform: rotate(-123deg) translate(59%, 65%) scale(0.4)
+      background-position: (114px * 0) 0
+    .clip[clipid="3"]::after
+      transform: rotate(-296deg) translate(70%, 65%) scale(0.4)
+      background-position: (114px * 1) 0
+    .clip[clipid="4"]::after
+      transform: rotate(-70deg) translate(-75%, 60%) scale(0.4)
+      background-position: (114px * 2) 0
   .clip
     position: absolute
     z-index: 1
@@ -49,24 +141,12 @@
     &[clipid="1"]
       left: 1rem
       top: 1rem
-      &::after
-        transform: rotate(-235deg) translate(-54%, 64%) scale(0.4)
-        background-position: (114px * 0) 0
     &[clipid="2"]
       right: 1rem
       top: 1rem
-      &::after
-        transform: rotate(-150deg) translate(12%, 68%) scale(0.4)
-        background-position: (114px * 1) 0
     &[clipid="3"]
       left: 1rem
       bottom: 1rem
-      &::after
-        transform: rotate(-285deg) translate(83%, 52%) scale(0.4)
-        background-position: (114px * 2) 0
     &[clipid="4"]
       right: 1rem
       bottom: 1rem
-      &::after
-        transform: rotate(-107deg) translate(-100%, 27%) scale(0.4)
-        background-position: (114px * 3) 0

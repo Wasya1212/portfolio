@@ -1,0 +1,24 @@
+@import "./animation"
+
+$draw-speed: 2.5s
+
++keyframes(draw)
+  from
+    stroke-dashoffset: 2000
+  to
+    stroke-dashoffset: 0
+
+@mixin animated-svg($color: #000)
+  display: block
+  path
+    fill: none
+    stroke: $color
+    stroke-dasharray: 2000
+    stroke-dashoffset: 2000
+    animation: draw $draw-speed ease-in-out
+    animation-fill-mode: forwards
+    // animation-iteration-count: infinite
+    animation-direction: alternate
+    @for $i from 1 through 4
+      &:nth-of-type(#{$i})
+        animation-delay: ($draw-speed / $i)

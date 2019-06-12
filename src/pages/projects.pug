@@ -13,8 +13,8 @@ block vars
     projects = [
       {
         category: 'нода',
-        title: 'sasite',
-        description: 'Lorem ipsum dolor sit amet.',
+        title: 'сосіть',
+        description: 'Тут буде якийсь хуйовий опис продукуту...',
         img: 'Annotation 2019-06-10 135210.png',
         link: 'https://mikino.herokuapp.com/'
       },
@@ -24,8 +24,17 @@ block vars
         description: 'Lorem ipsum dolor sit amet.',
         img: 'Annotation 2019-06-10 135210.png',
         link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'версткаs',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-10 135210.png',
+        link: 'https://mikino.herokuapp.com/'
       }
     ]
+    
+    usedCategories = []
 
 block beforeload
   link(rel="stylesheet", href="projects.css")
@@ -37,16 +46,19 @@ block content
   +b.SECTION.projects
     +e.ARTICLE.control
       each project in projects
-        +e.DIV.control__item
-          .border
-            .frame-1
-            .frame-2
-            .frame-3
-          .border-fill
-            .frame-1
-            .frame-2
-            .frame-3
-          | #{project.category}
+        if (usedCategories.indexOf(project.category) == -1)
+          +e.DIV.control__item
+            .border
+              .frame-1
+              .frame-2
+              .frame-3
+            .border-fill
+              .frame-1
+              .frame-2
+              .frame-3
+            span #{project.category}
+          -
+            usedCategories.push(project.category)
     +e.ARTICLE.list
       each project in projects
         +b.DIV.project
@@ -57,7 +69,8 @@ block content
             .frame-2
             .frame-3
           +e.A.image(href=project.link, target="_blank")
-            img(src="../assets/images/" + project.img, alt=project.title)
+            //- img(src="../assets/images/" + project.img, alt=project.title)
+            include ../assets/images/draw.svg
             .clip(clipid="1")
             .clip(clipid="2")
             .clip(clipid="3")
