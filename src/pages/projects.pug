@@ -19,6 +19,13 @@ block vars
         link: 'https://mikino.herokuapp.com/'
       },
       {
+        category: 'нода',
+        title: 'сосіть',
+        description: 'Тут буде якийсь хуйовий опис продукуту...',
+        img: 'Annotation 2019-06-10 135210.png',
+        link: 'https://mikino.herokuapp.com/'
+      },
+      {
         category: 'верстка',
         title: 'sasite',
         description: 'Lorem ipsum dolor sit amet.',
@@ -26,7 +33,7 @@ block vars
         link: 'https://mikino.herokuapp.com/'
       },
       {
-        category: 'версткаs',
+        category: 'нода',
         title: 'sasite',
         description: 'Lorem ipsum dolor sit amet.',
         img: 'Annotation 2019-06-10 135210.png',
@@ -47,7 +54,7 @@ block content
     +e.ARTICLE.control
       each project in projects
         if (usedCategories.indexOf(project.category) == -1)
-          +e.DIV.control__item
+          +e.DIV.control__item(category=project.category)
             .border
               .frame-1
               .frame-2
@@ -62,7 +69,7 @@ block content
       span.instruction Туто фільтр
     +e.ARTICLE.list
       each project in projects
-        +b.DIV.project
+        +b.DIV.project(category=project.category)
           +e.H4.title= project.title
           +e.P.description= project.description
           .line
