@@ -18,7 +18,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(svg|gif)$/,
         use: [
           {
             loader: 'file-loader',
@@ -32,6 +32,13 @@ module.exports = {
               }
             }
           }
+        ]
+      },
+      {
+        test: /\.(jpe?g|png)$/i,
+        loaders: [
+          'file-loader',
+          'webp-loader?{quality: 13}'
         ]
       },
       {
