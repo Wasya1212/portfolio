@@ -4,15 +4,30 @@ function ready() {
   let $projects = document.querySelectorAll('.project');
   let $projectsCategoriesControllers = document.querySelectorAll('.projects__control__item');
 
-  // select project by first category
-  selectProjects($projects, Array.from($projectsCategoriesControllers)[0].getAttribute('category'));
-
   // create projects categories filter controller
   Array.from($projectsCategoriesControllers).forEach($controller => {
     $controller.addEventListener('click', e => {
-      selectProjects($projects, e.currentTarget.getAttribute('category'));
+      selectProjects($projects, e.currentTarget.getAttribute('category'), [ 'animated' ])
+        .then($selectedProjects => {
+          checkProjectsAnimation($selectedProjects, window.pageYOffset || document.documentElement.scrollTop);
+
+          window.addEventListener("scroll", e => {
+            checkProjectsAnimation($selectedProjects, window.pageYOffset || document.documentElement.scrollTop);
+          });
+        });
     });
   });
+
+  // select project by first category
+  selectProjects($projects, Array.from($projectsCategoriesControllers)[0].getAttribute('category'), [ 'animated' ])
+    .then($selectedProjects => {
+      checkProjectsAnimation($selectedProjects, window.pageYOffset || document.documentElement.scrollTop);
+
+      window.addEventListener("scroll", e => {
+        checkProjectsAnimation($selectedProjects, window.pageYOffset || document.documentElement.scrollTop);
+      });
+    });
+
 
   let projectsAnimationCoords = Array.from($projects).map($project => ({ $project, distance: $project.offsetTop }));
 
@@ -34,12 +49,19 @@ function checkProjectsAnimation(projectsCoords, currentPosition) {
   });
 }
 
-function selectProjects($projects, category) {
-  Array.from($projects).forEach($project => {
-    if ($project.getAttribute('category') == category) {
-      $project.classList.remove('hidden');
-    } else {
-      $project.classList.add('hidden');
-    }
+function selectProjects($projects, category, removedClasses = []) {
+  return new Promise((resolve, reject) => {
+    let $currentProjects = [];
+
+    Array.from($projects).forEach($project => {
+      if ($project.getAttribute('category') == category) {
+        $project.classList.remove('hidden', ...removedClasses);
+        $currentProjects.push($project);
+      } else {
+        $project.classList.add('hidden');
+      }
+    });
+
+    resolve(Array.from($currentProjects).map($project => ({ $project, distance: $project.offsetTop })));
   });
-}
+};
