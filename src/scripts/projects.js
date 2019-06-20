@@ -1,6 +1,10 @@
-// document.addEventListener("DOMContentLoaded", ready);
+document.addEventListener("DOMContentLoaded", ready, true);
 
-ready();
+if (!document.init) {
+  document.init = [];
+} else {
+  document.init = [() => { ready(); }];
+}
 
 function ready() {
   let $projects = document.querySelectorAll('.project');

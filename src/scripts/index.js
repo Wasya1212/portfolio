@@ -74,6 +74,8 @@ function ready() {
   // set transition control to all links
   Array.from($_links).forEach($_link => {
     let link = $_link.getAttribute('pagePath');
+    $_link.removeAttribute('href');
+    $_link.setAttribute('nohref', true);
     $_link.addEventListener('click', e => {
       showContent(link);
     });
