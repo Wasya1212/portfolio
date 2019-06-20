@@ -1,13 +1,13 @@
 // 1920px / 100vw * 444px
 // 1080px / (100vw * 0,5625) * -667px
 
-document.addEventListener("DOMContentLoaded", ready);
+document.addEventListener("DOMContentLoaded", ready, true);
 
 if (!document.init) {
   document.init = [];
+} else {
+  document.init = [() => { ready(); }];
 }
-
-document.init.push(() => { ready(); });
 
 function ready() {
   let $_drawContainer = document.querySelector('.intro');
