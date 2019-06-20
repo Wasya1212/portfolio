@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", ready);
+// document.addEventListener("DOMContentLoaded", ready);
+
+ready();
 
 function ready() {
   let $projects = document.querySelectorAll('.project');

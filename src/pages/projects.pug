@@ -16,7 +16,7 @@ block vars
         title: 'сосіть',
         description: 'Тут буде якийсь хуйовий опис продукуту...',
         img: 'Annotation 2019-06-10 135210.png',
-        link: '/'
+        link: '/frontpage.html'
       },
       {
         category: 'нода',
@@ -69,14 +69,14 @@ block content
       span.instruction Туто фільтр
     +e.ARTICLE.list
       each project in projects
-        +b.DIV.project(category=project.category)
+        +b.DIV.project.link(pagePath=project.link, category=project.category)
           +e.H4.title= project.title
           +e.P.description= project.description
           .line
             .frame-1
             .frame-2
             .frame-3
-          +e.A.image(href=project.link)
+          +e.image
             img(src="../assets/images/" + project.img, alt=project.title)
             if (project.img == "Annotation 2019-06-10 135210.png")
               include ../assets/images/draw.svg

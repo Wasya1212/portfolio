@@ -12,8 +12,8 @@ indexPage.addScripts([ "index", "frontpage" ]);
 indexPage.addStyles([ "frontpage" ]);
 
 let aboutPage = new Page("about");
-// aboutPage.addScripts([ "index" ]);
-// aboutPage.addStyles([ "index" ]);
+aboutPage.addScripts([ "about" ]);
+aboutPage.addStyles([ "about" ]);
 
 let projectsPage = new Page("projects");
 projectsPage.addScripts([ "projects" ]);

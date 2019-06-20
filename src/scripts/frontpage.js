@@ -3,15 +3,21 @@
 
 document.addEventListener("DOMContentLoaded", ready);
 
+if (!document.init) {
+  document.init = [];
+}
+
+document.init.push(() => { ready(); });
+
 function ready() {
   let $_drawContainer = document.querySelector('.intro');
   let $_windContainer = document.querySelector('.intro__animated-block-2');
 
-  console.log(`w: ${$_drawContainer.offsetWidth}; h: ${$_drawContainer.offsetHeight}`);
+  // console.log(`w: ${$_drawContainer.offsetWidth}; h: ${$_drawContainer.offsetHeight}`);
   setWind($_windContainer, { w: $_drawContainer.offsetWidth, h: $_drawContainer.offsetHeight });
 
   window.addEventListener('resize', () => {
-    console.log(`w: ${$_drawContainer.offsetWidth}; h: ${$_drawContainer.offsetHeight}`);
+    // console.log(`w: ${$_drawContainer.offsetWidth}; h: ${$_drawContainer.offsetHeight}`);
     setWind($_windContainer, { w: $_drawContainer.offsetWidth, h: $_drawContainer.offsetHeight });
   });
 }
