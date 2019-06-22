@@ -1,28 +1,54 @@
 class Transition {
-  constructor(options) {
-    this.$_container = document.createElement('section');
-    this.$_container.classList.add('transition-container');
-    this.$_container.id = `tr-container-${this.containerId}`;
+  constructor($container) {
+    this.$container = $container;
   }
 
   get container() {
     // get main block with animated slides
-    return this.$_container;
+    return this.$container;
   }
 
   hideContainer() {
-    this.$_container.setAttribute('state', 'disabled');
+    this.$container.classList.remove('deactivated');
+    this.$container.classList.add('activated');
+
   }
 
   showContainer() {
-    this.$_container.removeAttribute('state');
+    this.$container.classList.add('deactivated');
+    this.$container.classList.remove('activated');
+    let style = document.createElement('style');
+    style.textContent = `
+      @keyframes transition {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(0.25);
+        }
+      }
+
+      body.deactivated {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-height: 100vh;
+        overflow: hidden;
+      }
+
+      .main {
+        animation-duration: .5s;
+        animation-name: transition;
+        height: 150vw;
+        animation-timing-function: ease-in-out;
+        transform: scale(0.25);
+      }
+    `;
+
+    document.querySelector('head').appendChild(style);
   }
 
   play() {
-    // blocks must by full screen
-    let screenWidth = window.innerWidth;
-    let screenHeight = window.innerHeight;
-
     // make enabled
     this.showContainer();
 
@@ -30,19 +56,13 @@ class Transition {
   }
 
   reverse() {
-    // blocks must by full screen
-    let screenWidth = window.innerWidth;
-    let screenHeight = window.innerHeight;
-
-    // make enabled
-    this.showContainer();
+    this.hideContainer();
 
     return Promise.resolve();
   }
 
   disable() {
-    this.hideContainer();
-    delete this.animatedBlocks;
+
   }
 };
 

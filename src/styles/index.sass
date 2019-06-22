@@ -52,13 +52,19 @@
   box-sizing: border-box
 
 body
+  position: relative
   margin: 0
   padding: 0
   max-width: 100vw
-  width: 100%
+  width: 100vw
   height: auto
   background-color: #fff
   overflow-x: hidden
+  background-image: url('../../assets/images/safe_image.jpg')
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  background-attachment: fixed
 a
   display: inline-block
   color: inherit
@@ -161,3 +167,24 @@ svg
 
 .link
   cursor: pointer
+
+.main
+  background-color: #fff
+  position: relative
+  width: 100%
+  height: auto
+  &::after
+    content: ''
+    display: inline-block
+    height: 100%
+    width: 12%
+    position: absolute
+    left: 0
+    top: 0
+    background-color: transparent
+    transform: translateX(-100%)
+    z-index: 999
+    background-repeat: no-repeat
+    background-size: auto 100%
+    background-position: center right
+    background-image: url('../../assets/images/note.png')

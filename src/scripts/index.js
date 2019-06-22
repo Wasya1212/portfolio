@@ -3,7 +3,13 @@ import Transition from "./libs/transition";
 
 document.addEventListener("DOMContentLoaded", ready);
 
-let nextPageTransition = new Transition();
+if (!document.init) {
+  document.init = [];
+} else {
+  document.init = [() => { ready(); }];
+}
+
+let nextPageTransition = new Transition(document.body);
 
 // slice text to many parts
 function sliceText(str, maxLen = 10000) {
@@ -86,7 +92,13 @@ function ready() {
 function showContent(link) {
   nextPageTransition
     .play()
-    .then(() => loader.loadContent(link))
+    .then(() => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(loader.loadContent(link));
+        }, 700);
+      });
+    })
     .then(content => {
       setContent(content);
     })
@@ -104,11 +116,47 @@ function showContent(link) {
 }
 
 function setContent(content) {
+  let style = document.createElement('style');
+  style.textContent = `
+    @keyframes transition {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(0.25);
+      }
+    }
+
+    body.activated {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 100vh;
+      overflow: hidden;
+    }
+
+    .main {
+      animation-duration: .65s;
+      animation-direction: reverse;
+      height: 150vw;
+      animation-timing-function: ease-in-out;
+      transform: scale(1);
+    }
+  `;
+
+  let div = document.createElement('div');
+  div.innerHTML = content.head;
+  div.appendChild(style);
+
+  // add head
+  document.querySelector('head').innerHTML = div.innerHTML;
+
   // add body
   document.getElementsByTagName('body')[0].innerHTML = content.bodyParts.join('');
 
-  // add head
-  document.querySelector('head').innerHTML = content.head;
+  setTimeout(() => {
+    document.head.removeChild(document.head.querySelector('style'));
+  }, 700);
 
   // create scripts
   const $scripts = content.scripts.map(script => {
@@ -134,4 +182,6 @@ function setContent(content) {
   $scripts.forEach($script => {
     document.getElementsByTagName('body')[0].appendChild($script);
   });
+
+  document.querySelector('.main').style.animationName = 'transition';
 }

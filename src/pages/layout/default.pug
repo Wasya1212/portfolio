@@ -1,6 +1,9 @@
 // varialbes
 block vars
 
+include ../libs/bemto/index
+include ../mixins/index
+
 <!DOCTYPE html>
 html(lang= page.language)
   head
@@ -9,12 +12,11 @@ html(lang= page.language)
       include ../partials/head
     block beforeload
   body(class="page-" + page.name)
-    include ../libs/bemto/index
-    include ../mixins/index
-    block header
-      include ../partials/header
-    block content
-    block footer
-      include ../partials/footer
-      script(src="js/index.js")
+    main.main
+      block header
+        include ../partials/header
+      block content
+      block footer
+        include ../partials/footer
+    script(src="js/index.js")
     block afterload
