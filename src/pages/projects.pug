@@ -22,11 +22,32 @@ block vars
         category: 'нода',
         title: 'сосіть',
         description: 'Тут буде якийсь хуйовий опис продукуту...',
-        img: 'Annotation 2019-06-10 135210.png',
+        img: 'Annotation 2019-06-23 173628.png',
         link: 'https://mikino.herokuapp.com/'
       },
       {
-        category: 'верстка',
+        category: 'нода',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-23 192639.png',
+        link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'нода',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-23 202406.png',
+        link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'нода',
+        title: 'sasite',
+        description: 'Lorem ipsum dolor sit amet.',
+        img: 'Annotation 2019-06-23 210117.png',
+        link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'нода',
         title: 'sasite',
         description: 'Lorem ipsum dolor sit amet.',
         img: 'Annotation 2019-06-10 135210.png',
@@ -36,7 +57,7 @@ block vars
         category: 'нода',
         title: 'sasite',
         description: 'Lorem ipsum dolor sit amet.',
-        img: 'Annotation 2019-06-10 135210.png',
+        img: 'hart.png',
         link: 'https://mikino.herokuapp.com/'
       }
     ]
@@ -80,6 +101,16 @@ block content
             img(src="../assets/images/" + project.img, alt=project.title)
             if (project.img == "Annotation 2019-06-10 135210.png")
               include ../assets/images/draw.svg
+            if (project.img == "Annotation 2019-06-23 173628.png")
+              include ../assets/images/village.svg
+            if (project.img == "hart.png")
+              include ../assets/images/hart.svg
+            if (project.img == "Annotation 2019-06-23 192639.png")
+              include ../assets/images/twitter.svg
+            if (project.img == "Annotation 2019-06-23 202406.png")
+              include ../assets/images/bitcoin.svg
+            if (project.img == "Annotation 2019-06-23 210117.png")
+              include ../assets/images/remote.svg
             .clip(clipid="1")
             .clip(clipid="2")
             .clip(clipid="3")
