@@ -29,7 +29,7 @@ function sliceText(str, maxLen = 10000) {
 function getBody(page) {
   let slices = sliceText(page, 100);
   const sliceLength = slices[0].length;
-
+console.log(slices[slices.length - 1])
   let startIndex; // start of body
   let endIndex; // end of body
 
@@ -50,7 +50,7 @@ function getBody(page) {
       break;
     }
   }
-
+console.log(endIndex)
   // remove trash slices from start
   slices.splice(0, Math.floor(startIndex / sliceLength));
   // remove trash slices from end

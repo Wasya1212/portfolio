@@ -25,7 +25,7 @@ module.exports = {
             options: {
               emitFile: true, // Don't forget emit images.
               outputPath: 'img/',
-              name: '[name]-[hash].[ext]',
+              name: 'img/[name]-[hash].[ext]',
               mozjpeg: {
                 progressive: true,
                 quality: 70
@@ -36,8 +36,13 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png)$/i,
-        loaders: [
-          'file-loader',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'img/[name]-[hash].[ext]',
+            }
+          },
           'webp-loader?{quality: 13}'
         ]
       },
