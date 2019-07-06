@@ -25,14 +25,16 @@ function ready() {
 function setWind(windContainer, { w, h }) {
   const width = w / 1920 * 486;
   const height = w / 1920 * 1080 / h * 426;
+  const left = (w / 1920 * 455) - (width / 2);
+  // const bottom = (w / 1920 * 1080 / h * 635) - (windContainer.offsetHeight / 2);
+  const bottom = 730 / (1920 / w) - height / 2;
+  console.log(1080 / 1920)
+  console.log(1080 - 425);
+  console.log(h)
+  // const bottom = left / 0.56;// 1080 / (h * 0,5625) * 667;
 
   windContainer.style.width = `${width}px`;
   windContainer.style.height = `${height}px`;
-
-  const left = (w / 1920 * 455) - (windContainer.offsetWidth / 2);
-  // const bottom = (w / 1920 * 1080 / h * 635) - (windContainer.offsetHeight / 2);
-  const bottom = left / 0.72;// 1080 / (h * 0,5625) * 667;
-
   windContainer.style.left = `${left}px`;
   windContainer.style.bottom = `${bottom}px`;
 }
