@@ -67,6 +67,12 @@
   100%
     opacity: 1
 
++keyframes(photo)
+  from
+    transform: translateY(-100vh) rotate(25deg)
+  to
+    transform: translateY(0) rotate(0deg)
+
 .projects
   position: relative
   padding-top: 60px
@@ -197,12 +203,13 @@
     width: 100%
     &:hover
       img
-        opacity: 1
+        display: inline-block
       svg
         opacity: 0
       .clip
         display: block
     img
+      display: none
       position: absolute
       left: 0
       top: 0
@@ -212,8 +219,10 @@
       max-height: 100%
       object-fit: contain
       object-position: center
-      opacity: 0
-      transition: opacity .5s ease-in-out
+      animation-name: photo
+      animation-duration: .35s
+      animation-direction: alternate
+      animation-timing-function: ease-in-out
     svg
       opacity: 0
       transition: opacity .5s ease-in-out
