@@ -203,12 +203,14 @@
     width: 100%
     &:hover
       img
+        opacity: 1
         display: inline-block
       svg
-        opacity: 0
+        opacity: 1
       .clip
         display: block
     img
+      opacity: 0
       display: none
       position: absolute
       left: 0
@@ -225,7 +227,7 @@
       animation-timing-function: ease-in-out
     svg
       opacity: 0
-      transition: opacity .5s ease-in-out
+      transition: opacity .35s linear
   &:nth-child(odd)
     .clip[clipid="1"]::after
       transform: rotate(-235deg) translate(-54%, 64%) scale(0.4)

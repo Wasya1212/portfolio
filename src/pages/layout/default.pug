@@ -13,10 +13,11 @@ html(lang= page.language)
     block beforeload
   body(class="page-" + page.name)
     main.main
-      block header
-        include ../partials/header
-      block content
-      block footer
-        include ../partials/footer
+      .content
+        block header
+          include ../partials/header
+        block content
+        block footer
+          include ../partials/footer
     script(src="js/index.js")
     block afterload

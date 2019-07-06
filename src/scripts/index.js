@@ -88,75 +88,17 @@ function ready() {
   });
 }
 
-// play animation and show new page
-function showContent(link) {
-  nextPageTransition
-    .play()
-    .then(() => {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve(loader.loadContent(link));
-        }, 700);
-      });
-    })
-    .then(content => {
-      setContent(content);
-    })
-    .then(() => nextPageTransition.reverse())
-    .then(() => {
-      // close transition animation
-      nextPageTransition.disable();
-
-      if (!document.init) {
-        document.init = [];
-      }
-
-      document.init.push(() => { ready(); });
-    });
-}
-
-function setContent(content) {
-  let style = document.createElement('style');
-  style.textContent = `
-    @keyframes transition {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(0.25);
-      }
-    }
-
-    body.activated {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-height: 100vh;
-      overflow: hidden;
-    }
-
-    .main {
-      animation-duration: .65s;
-      animation-direction: reverse;
-      height: 150vw;
-      animation-timing-function: ease-in-out;
-      transform: scale(1);
-    }
-  `;
-
-  let div = document.createElement('div');
-  div.innerHTML = content.head;
-  div.appendChild(style);
-
+function setContent(content, link) {
   // add head
-  document.querySelector('head').innerHTML = div.innerHTML;
+  document.querySelector('head').innerHTML = content.head.innerHTML;
 
   // add body
-  document.getElementsByTagName('body')[0].innerHTML = content.bodyParts.join('');
+  document.getElementsByTagName('body')[0].innerHTML = content.body.innerHTML;
 
-  setTimeout(() => {
-    document.head.removeChild(document.head.querySelector('style'));
-  }, 700);
+  if (window.history.replaceState) {
+   //prevents browser from storing history with each change:
+   window.history.replaceState(null, null, link);
+}
 
   // create scripts
   const $scripts = content.scripts.map(script => {
@@ -182,6 +124,73 @@ function setContent(content) {
   $scripts.forEach($script => {
     document.getElementsByTagName('body')[0].appendChild($script);
   });
+}
 
-  document.querySelector('.main').style.animationName = 'transition';
+// play animation and show new page
+function showContent(link) {
+  nextPageTransition
+    .play()
+    .then(() => {
+      // temporary transition style
+      let style = document.createElement('style');
+      style.textContent = nextPageTransition.hideStyle;
+
+      // set style to header
+      document.querySelector('head').appendChild(style);
+    })
+    .then(() => {
+      // load new page content
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(loader.loadContent(link));
+        }, 700);
+      });
+    })
+    .then(content => {
+      // create temporary transition finishing styles
+      let style = document.createElement('style');
+      style.textContent = nextPageTransition.showStyle;
+
+      // create head
+      let head = document.createElement('head');
+      head.innerHTML = content.head;
+      head.appendChild(style);
+
+      // replace head
+      content.head = head;
+
+      return content;
+    })
+    .then(content => {
+      // create body
+      let body = document.createElement('body');
+      body.innerHTML = content.bodyParts.join('');
+      body.querySelector('.main').style.animationName = 'transition';
+
+      // replace body
+      content.body = body;
+      delete content.bodyParts;
+
+      return content;
+    })
+    .then(content => {
+      setContent(content, link);
+    })
+    .then(() => {
+      setTimeout(() => {
+        // remove transition styles
+        document.head.removeChild(document.head.querySelector('style'));
+      }, 700);
+    })
+    .then(() => nextPageTransition.reverse()) // wait for end of animation
+    .then(() => {
+      // close transition animation
+      nextPageTransition.disable();
+
+      if (!document.init) {
+        document.init = [];
+      }
+
+      document.init.push(() => { ready(); });
+    });
 }
