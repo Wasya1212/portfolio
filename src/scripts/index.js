@@ -166,6 +166,7 @@ function showContent(link) {
       let body = document.createElement('body');
       body.innerHTML = content.bodyParts.join('');
       body.querySelector('.main').style.animationName = 'transition';
+      body.querySelector('.content').style.opacity = '0';
 
       // replace body
       content.body = body;
@@ -180,6 +181,7 @@ function showContent(link) {
       setTimeout(() => {
         // remove transition styles
         document.head.removeChild(document.head.querySelector('style'));
+        document.querySelector('.content').style.opacity = '1';
       }, 700);
     })
     .then(() => nextPageTransition.reverse()) // wait for end of animation
