@@ -13,6 +13,9 @@ function ready() {
   // create projects categories filter controller
   Array.from($projectsCategoriesControllers).forEach($controller => {
     $controller.addEventListener('click', e => {
+      // scroll to top
+      window.scrollTo(0, 0);
+      
       selectProjects($projects, e.currentTarget.getAttribute('category'), [ 'animated' ])
         .then($selectedProjects => {
           checkProjectsAnimation($selectedProjects, window.pageYOffset || document.documentElement.scrollTop);
