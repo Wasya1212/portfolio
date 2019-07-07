@@ -5,8 +5,8 @@ block vars
     page = {
       language: 'ua',
       name: 'about',
-      title: 'About us',
-      appTitle: 'About us',
+      title: 'About me',
+      appTitle: 'About me',
       description: 'Main corporation description page'
     }
 block beforeload
@@ -16,8 +16,22 @@ block afterload
   script(src="js/about.js")
   
 block content
-  +b.SECTION.about
-    h1 about world
-    .image
-      img(src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/141041/lee-morgan.jpg")
-      .mask
+  +b.SECTION.about-me
+    +e.image
+      img(src="../assets/images/s1200.jpg")
+    +e.description
+      h2 Ми захоплені створенням цифрових вражень, які впливають.
+      p
+        |Вирішуючи проблеми з ясністю, простотою і щирістю, ми надаємо 
+        strong нашим клієнтам 
+        |повернення інвестицій через наші ефективні цифрові підходи.
+      p
+        |Ми тут, щоб допомогти вам перетворити ваші 
+        strong ідеї
+        | в 
+        strong реальність
+        |, вирішення проблем всієї стратегії, проектування та побудови процесів.
+      p
+        |Ми володіємо широким спектром переданих 
+        strong навичок
+        |, які дозволяють нам входити в нові галузі і пропонувати нашим клієнтам унікальні підходи до їх завдань.
