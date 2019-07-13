@@ -19,6 +19,10 @@ let projectsPage = new Page("projects");
 projectsPage.addScripts([ "projects" ]);
 projectsPage.addStyles([ "projects" ]);
 
+let contactsPage = new Page("contacts");
+contactsPage.addScripts([ "contacts" ]);
+contactsPage.addStyles([ "contacts" ]);
+
 module.exports = {
   distDir: path.resolve(__dirname, '../dist'),
   srcDir: path.resolve(__dirname, '../src'),
@@ -29,6 +33,7 @@ module.exports = {
   pages: [
     indexPage,
     aboutPage,
-    projectsPage
+    projectsPage,
+    contactsPage
   ].map(page => page.data())
 }

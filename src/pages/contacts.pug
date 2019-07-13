@@ -1,0 +1,19 @@
+extends layout/default
+
+block vars
+  -
+    page = {
+      language: 'ua',
+      name: 'contacts',
+      title: 'Contacts',
+      appTitle: 'Contacts',
+      description: 'My main contacts'
+    }
+block beforeload
+  link(rel="stylesheet", href="about.css")
+  
+block afterload
+  script(src="js/about.js")
+  
+block content
+  +b.SECTION.contacts contacts
