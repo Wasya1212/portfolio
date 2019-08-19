@@ -10,10 +10,22 @@ block vars
       description: 'My main contacts'
     }
 block beforeload
-  link(rel="stylesheet", href="about.css")
+  link(rel="stylesheet", href="contacts.css")
   
 block afterload
   script(src="js/about.js")
   
 block content
-  +b.SECTION.contacts contacts
+  +b.SECTION.contacts
+    +e.H1.title Мої контакти
+    +e.content
+      strong електронна пошта 1:
+        span leonardo.1212@yandex.ua
+      strong електронна пошта 2:
+        span wasya1212cool@gmail.com
+      strong номер телефону:
+        span +380 66 795 8147
+    +e.content
+      include modules/social
+      
+        
