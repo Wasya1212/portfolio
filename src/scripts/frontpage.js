@@ -21,7 +21,7 @@ function setWind(windContainer, { w, h }) {
   const width = w / 1920 * 486;
   const height = w / 1920 * 1080 / h * 426;
   const left = (w / 1920 * 455) - (width / 2);
-  const bottom = 730 / (1920 / w) - height / 2;
+  const bottom = 660 / (1920 / w) - height / 2;
 
   windContainer.style.width = `${width}px`;
   windContainer.style.height = `${height}px`;

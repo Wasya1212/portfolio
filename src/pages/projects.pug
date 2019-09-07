@@ -52,6 +52,20 @@ block vars
         description: 'Виводить покази з датчкиків на смарт-куртці (тепература, тиск, серцебиття...) та дозволяє керувати спеціальним функціоналом.',
         img: 'hart.png',
         link: 'https://mikino.herokuapp.com/'
+      },
+      {
+        category: 'верстка',
+        title: 'Сайт фотографа',
+        description: 'Сайт портфоліо для фотографа. Мій перший комерційний проект. Оптимізацією Задоволений.',
+        img: 'photograph.png',
+        link: 'https://vitaliy-todosiychuk.com'
+      },
+      {
+        category: 'верстка',
+        title: 'Сайт Dt Logick Group',
+        description: 'Сайт Dt Logick Group. Мій другий комерційний проект.',
+        img: 'dtlogick.png',
+        link: 'http://dtlogickgroup.com.ua/index.html'
       }
     ]
     
@@ -104,6 +118,10 @@ block content
               include ../assets/images/bitcoin.svg
             if (project.img == "Annotation 2019-06-23 210117.png")
               include ../assets/images/remote.svg
+            if (project.img == "photograph.png")
+              include ../assets/images/photograph.svg
+            if (project.img == "dtlogick.png")
+              include ../assets/images/dtlogick.svg
             .clip(clipid="1")
             .clip(clipid="2")
             .clip(clipid="3")
