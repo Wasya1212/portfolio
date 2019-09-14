@@ -194,6 +194,11 @@ function showContent(link) {
       // close transition animation
       nextPageTransition.disable();
       document.head.removeChild(document.head.querySelector('style'));
+      setTimeout(() => {
+        Array.from(document.head.querySelector('style')).forEach(style => {
+          document.head.removeChild(style);
+        });
+      }, 1000)
 
       if (!document.init) {
         document.init = [];
