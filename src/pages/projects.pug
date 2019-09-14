@@ -16,42 +16,42 @@ block vars
         title: 'Соціальна мережа "мікіно.юа"',
         description: 'Проста соціальна мережа, яка дозволяє спілкуватися з друзями та публікувати власні медіа на сторінці з унікальним дизайном створеним самим користувачем.',
         img: 'Annotation 2019-06-10 135210.png',
-        link: '/frontpage.html'
+        link: 'https://mikino.herokuapp.com/'
       },
       {
         category: 'нода',
         title: 'Реєстр коломиї',
         description: 'Сайт що дозволяє публікувати новини для жителів міста та проводити облік населення і їх власнсті на стороні адміна.',
         img: 'Annotation 2019-06-23 173628.png',
-        link: 'https://mikino.herokuapp.com/'
+        link: 'https://kolomiya-register.herokuapp.com/'
       },
       {
         category: 'реакт',
         title: 'Пошук твітів',
         description: 'Сайт, що дозволяє здійснювати зручний пошук сторінок з твітеру та всіх твітів з неї.',
         img: 'Annotation 2019-06-23 192639.png',
-        link: 'https://mikino.herokuapp.com/'
+        link: 'https://evening-wildwood-72825.herokuapp.com/'
       },
       {
         category: 'реакт',
         title: 'Симуляція покупки біткоїну',
         description: 'Сайт надає користувачу стартовий капітал який дозволяє симулювати торгівлю біткоїном. Данні беруться в реальному часі. Симулятор дозволяє обмінювати як валюту, так і біткоїни',
         img: 'Annotation 2019-06-23 202406.png',
-        link: 'https://mikino.herokuapp.com/'
+        link: 'https://ifyouhavemoneyforbitcoin.herokuapp.com/'
       },
       {
         category: 'смартфон',
         title: 'Керування ПК',
         description: 'Комплекс програм, що дозволяє здійснювати віддалене керування комп\'ютером за домогою смартфона.',
         img: 'Annotation 2019-06-23 210117.png',
-        link: 'https://mikino.herokuapp.com/'
+        link: 'https://remotedesktopweb.herokuapp.com/'
       },
       {
         category: 'верстка',
         title: 'Смарт-куртка',
         description: 'Виводить покази з датчкиків на смарт-куртці (тепература, тиск, серцебиття...) та дозволяє керувати спеціальним функціоналом.',
         img: 'hart.png',
-        link: 'https://mikino.herokuapp.com/'
+        link: 'https://super-jacket.herokuapp.com/'
       },
       {
         category: 'верстка',
@@ -97,7 +97,7 @@ block content
       span.instruction Туто фільтр
     +e.ARTICLE.list
       each project in projects
-        +b.DIV.project.link(pagePath=project.link, category=project.category)
+        +b.DIV.project(category=project.category)
           +e.H4.title= project.title
           +e.P.description= project.description
           .line
@@ -105,27 +105,28 @@ block content
             .frame-2
             .frame-3
           +e.image
-            img(src="../assets/images/" + project.img, alt=project.title)
-            if (project.img == "Annotation 2019-06-10 135210.png")
-              include ../assets/images/draw.svg
-            if (project.img == "Annotation 2019-06-23 173628.png")
-              include ../assets/images/village.svg
-            if (project.img == "hart.png")
-              include ../assets/images/hart.svg
-            if (project.img == "Annotation 2019-06-23 192639.png")
-              include ../assets/images/twitter.svg
-            if (project.img == "Annotation 2019-06-23 202406.png")
-              include ../assets/images/bitcoin.svg
-            if (project.img == "Annotation 2019-06-23 210117.png")
-              include ../assets/images/remote.svg
-            if (project.img == "photograph.png")
-              include ../assets/images/photograph.svg
-            if (project.img == "dtlogick.png")
-              include ../assets/images/dtlogick.svg
-            .clip(clipid="1")
-            .clip(clipid="2")
-            .clip(clipid="3")
-            .clip(clipid="4")
+            a(href=project.link, target="_blank")
+              img(src="../assets/images/" + project.img, alt=project.title)
+              if (project.img == "Annotation 2019-06-10 135210.png")
+                include ../assets/images/draw.svg
+              if (project.img == "Annotation 2019-06-23 173628.png")
+                include ../assets/images/village.svg
+              if (project.img == "hart.png")
+                include ../assets/images/hart.svg
+              if (project.img == "Annotation 2019-06-23 192639.png")
+                include ../assets/images/twitter.svg
+              if (project.img == "Annotation 2019-06-23 202406.png")
+                include ../assets/images/bitcoin.svg
+              if (project.img == "Annotation 2019-06-23 210117.png")
+                include ../assets/images/remote.svg
+              if (project.img == "photograph.png")
+                include ../assets/images/photograph.svg
+              if (project.img == "dtlogick.png")
+                include ../assets/images/dtlogick.svg
+              .clip(clipid="1")
+              .clip(clipid="2")
+              .clip(clipid="3")
+              .clip(clipid="4")
           .line
             .frame-1
             .frame-2
