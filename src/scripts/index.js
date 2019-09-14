@@ -89,8 +89,27 @@ function ready() {
 }
 
 function setContent(content, link) {
+  let links = Array.from(content.head.querySelectorAll('link')).filter(link => {
+    let res = true;
+
+    Array.from(document.querySelector('head').querySelectorAll('link'))
+      .forEach(newlink => {
+        if (newlink.href == link.href) {
+          res = false
+        }
+      });
+
+    return res;
+  })
+
   // add head
-  document.querySelector('head').innerHTML = content.head.innerHTML;
+  // document.querySelector('head').innerHTML = content.head.innerHTML;
+
+  document.querySelector('head>title').textContent = content.head.querySelector('title').textContent;
+
+  links.forEach(link => {
+    document.querySelector('head').appendChild(link);
+  });
 
   // add body
   document.getElementsByTagName('body')[0].innerHTML = content.body.innerHTML;
@@ -133,7 +152,7 @@ function showContent(link) {
     .then(() => {
       // temporary transition style
       let style = document.createElement('style');
-      style.textContent = nextPageTransition.hideStyle;
+      style.textContent = nextPageTransition.hideStyle + nextPageTransition.showStyle;
 
       // set style to header
       document.querySelector('head').appendChild(style);
@@ -147,14 +166,9 @@ function showContent(link) {
       });
     })
     .then(content => {
-      // create temporary transition finishing styles
-      let style = document.createElement('style');
-      style.textContent = nextPageTransition.showStyle;
-
       // create head
       let head = document.createElement('head');
       head.innerHTML = content.head;
-      head.appendChild(style);
 
       // replace head
       content.head = head;
@@ -165,8 +179,6 @@ function showContent(link) {
       // create body
       let body = document.createElement('body');
       body.innerHTML = content.bodyParts.join('');
-      body.querySelector('.main').style.animationName = 'transition';
-      body.querySelector('.content').style.opacity = '0';
 
       // replace body
       content.body = body;
@@ -177,17 +189,11 @@ function showContent(link) {
     .then(content => {
       setContent(content, link);
     })
-    .then(() => {
-      setTimeout(() => {
-        // remove transition styles
-        document.head.removeChild(document.head.querySelector('style'));
-        document.querySelector('.content').style.opacity = '1';
-      }, 700);
-    })
     .then(() => nextPageTransition.reverse()) // wait for end of animation
     .then(() => {
       // close transition animation
       nextPageTransition.disable();
+      document.head.removeChild(document.head.querySelector('style'));
 
       if (!document.init) {
         document.init = [];

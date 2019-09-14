@@ -1,5 +1,5 @@
 const HIDE_STYLE = `
-  @keyframes transition {
+  @keyframes reverseTransition {
     from {
       transform: scale(1);
     }
@@ -16,15 +16,15 @@ const HIDE_STYLE = `
     overflow: hidden;
   }
 
-  .main {
+  body.deactivated .main {
     animation-duration: .5s;
-    animation-name: transition;
+    animation-name: reverseTransition;
     height: 150vw;
     animation-timing-function: ease-in-out;
     transform: scale(0.25);
   }
 
-  .content {
+  body.deactivated .content {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -50,15 +50,16 @@ const SHOW_STYLE = `
     overflow: hidden;
   }
 
-  .main {
+  body.activated .main {
     animation-duration: .65s;
     animation-direction: reverse;
+    animation-name: transition;
     height: 150vw;
     animation-timing-function: ease-in-out;
     transform: scale(1);
   }
 
-  .content {
+  body.activated .content {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -86,12 +87,15 @@ class Transition {
   hideContainer() {
     this.$container.classList.remove('deactivated');
     this.$container.classList.add('activated');
-
+    this.$container.querySelector('main').style.webkitAnimationPlayState="paused";
+    this.$container.querySelector('main').style.webkitAnimationPlayState="running";
   }
 
   showContainer() {
     this.$container.classList.add('deactivated');
     this.$container.classList.remove('activated');
+    this.$container.querySelector('main').style.webkitAnimationPlayState="paused";
+    this.$container.querySelector('main').style.webkitAnimationPlayState="running";
   }
 
   play() {
@@ -104,7 +108,9 @@ class Transition {
   reverse() {
     this.hideContainer();
 
-    return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 700)
+    });
   }
 
   disable() {
