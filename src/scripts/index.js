@@ -75,6 +75,12 @@ let loader = new RestFull(page => {
 
 // init func
 function ready() {
+  setTimeout(() => {
+    Array.from(document.head.querySelectorAll('style')).forEach(style => {
+      document.head.removeChild(style);
+    });
+  }, 1000)
+  
   let $_links = document.querySelectorAll('.link[pagePath]');
 
   // set transition control to all links
@@ -194,11 +200,6 @@ function showContent(link) {
       // close transition animation
       nextPageTransition.disable();
       document.head.removeChild(document.head.querySelector('style'));
-      setTimeout(() => {
-        Array.from(document.head.querySelector('style')).forEach(style => {
-          document.head.removeChild(style);
-        });
-      }, 1000)
 
       if (!document.init) {
         document.init = [];
