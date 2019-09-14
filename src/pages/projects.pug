@@ -105,7 +105,7 @@ block content
             .frame-2
             .frame-3
           +e.image
-            a(href=project.link, target="_blank")
+            a(href=project.link, aria-label=project.title, rel="noreferrer", target="_blank")
               img(src="../assets/images/" + project.img, alt=project.title)
               if (project.img == "Annotation 2019-06-10 135210.png")
                 include ../assets/images/draw.svg
