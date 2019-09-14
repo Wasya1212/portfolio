@@ -1,6 +1,7 @@
 @import "../index.sass"
 @import "../mixins/hover-text.sass"
 @import "../mixins/animation.sass"
+@import "../media.sass"
 
 +keyframes(drawbg)
   from
@@ -44,7 +45,6 @@
     @include animated-text(.35s, running)
     text-transform: capitalize
     text-align: center
-    max-width: 1200px
     margin: 0 auto
     font-size: 60px
     font-family: MyCoolFont3
@@ -52,8 +52,6 @@
   &__content
     display: block
     margin: 0 auto
-    max-width: 1200px
-    width: 1200px
     text-align: center
     font-size: 25px
     strong
@@ -66,3 +64,5 @@
     span
       text-transform: lowercase
       margin-left: 1ch
+
+@include contacts()

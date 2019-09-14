@@ -1,0 +1,113 @@
+@import "./mixins/media.sass"
+
+@include responsive(phone)
+  body, main
+    max-width: 100vw
+
+@mixin header
+  @include responsive(phone)
+    .header
+      flex-direction: column
+      .social
+        display: block
+        width: 100%
+      .navbar
+        display: block
+        width: 100%
+        padding: .5rem 0
+        &__item
+          animation-play-state: running
+          width: calc(100% / 4)
+          span
+            box-sizing: border-box
+            width: 100%
+            font-size: 20px
+  @include responsive(tablet)
+
+// FOOTER
+@mixin footer
+  .footer__navigation
+    @include responsive(phone)
+      a
+        margin-bottom: .5rem
+
+// ABOUT
+@mixin about
+  .about-me
+    @include responsive(phone)
+      padding-top: 100px
+    &__image
+      @include responsive(phone)
+        margin: 0
+        padding: 0 1rem
+        height: auto
+    &__description
+      @include responsive(phone)
+        margin: 0
+        padding: 0 1rem
+        h2
+          padding: 1rem 0
+          margin: 0
+          font-size: 35px
+          text-align: center
+        p
+          font-size: 22px
+
+// CONTACTS
+@mixin contacts
+  .contacts
+    &__title
+      @include responsive(phone)
+        font-size: 35px
+        padding-bottom: 1rem
+    &__content
+      @include responsive(phone)
+        font-size: 18px
+        strong
+          text-align: left
+          span
+            display: block
+            margin-left: 2ch
+        .social
+          a
+            font-size: 25px
+            margin: 0 .5rem
+
+// FRONTPAGE
+@mixin frontpage
+  .intro__title
+    @include responsive(tablet)
+      position: relative
+      left: 0
+      top: 0
+      margin-top: 100px
+      .description
+        position: relative
+        width: 100%
+        text-align: center
+        p
+          font-size: 30px
+
+// PROJECTS
+@mixin projects
+  .project
+    @include responsive(phone)
+      padding: 0
+      display: block !important
+      .project__description
+        font-size: 22px
+  .projects
+    @include responsive(tablet)
+      .instruction
+        display: none
+    &__control
+      @include responsive(phone)
+        display: none
+      &__item
+        @include responsive(tablet)
+          span
+            font-size: 25px
+            padding: .75rem 1rem
+    &__list
+      @include responsive(phone)
+        margin: 0

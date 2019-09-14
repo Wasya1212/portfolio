@@ -1,6 +1,7 @@
 @import "../index.sass"
 @import "../mixins/animation.sass"
 @import "../mixins/hover-text.sass"
+@import "../media.sass"
 
 +keyframes(show)
   0%
@@ -89,3 +90,5 @@
       letter-spacing: 1px
       strong
         @include animated-text(.35s, running)
+
+@include about()

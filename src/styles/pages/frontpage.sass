@@ -1,6 +1,7 @@
 @import "../index.sass"
 @import "../mixins/hover-text.sass"
 @import "../mixins/animation.sass"
+@import "../media.sass"
 
 +keyframes(drawbg)
   from
@@ -120,7 +121,7 @@
     background-size: contain
     background-position: center
     background-repeat: no-repeat
-    animation: 25s linear rotatewind
+    animation: 20s linear rotatewind
     animation-iteration-count: infinite
     animation-direction: normal
     // transform-origin: 50% 59.5% 0
@@ -156,3 +157,5 @@
       .frame-3
         background-image: url("../../assets/images/bird3.png")
         animation: bird3 .35s infinite linear
+
+@include frontpage()
